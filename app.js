@@ -11,7 +11,8 @@ var corsOptions = {
   origin: '*', //reemplazar con dominio
   optionSuccessStatus: 200 //
 }
-app.use(cors())
+
+app.use(cors(corsOptions))
 
 app.use(morgan('dev'))
 // capturar body
