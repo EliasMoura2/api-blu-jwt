@@ -5,15 +5,21 @@ const bodyParser = require('body-parser')
 
 const app = express()
 require("./database");
-app.use(morgan('dev'))
 
+// cors
+var corsOptions = {
+  origin: '*', //reemplazar con dominio
+  optionSuccessStatus: 200 //
+}
+app.use(cors())
+
+app.use(morgan('dev'))
 // capturar body
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-
 // app.use(express.urlencoded({extended :false}))
 // app.use(express.json)
-app.use(cors())
+
 const verifyToken = require('./middleware/verifyToken')
 
 //routes
