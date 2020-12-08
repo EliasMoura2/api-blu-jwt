@@ -37,9 +37,9 @@ router.post('/register', async (req, res, next) => {
     }
 
     // password hash
-    // const salt = await bcrypt.genSalt(10)
-    // const passwordHashed = await bcrypt.hash(req.body.password, salt)
-    const passwordHashed = await user.encryptPass(req.body.password);
+    const salt = await bcrypt.genSalt(10)
+    const passwordHashed = await bcrypt.hash(req.body.password, salt)
+    // const passwordHashed = await user.encryptPass(req.body.password);
 
     const { username, email } = req.body
     // console.log(username, email, password);
@@ -90,10 +90,10 @@ router.post('/login', async (req, res, next) => {
   } // el email no existe
 
   // validar password
-  // const validPassword = await bcrypt.compare( req.body.password, user.password)
-  const validPass = await user.validatePass(password); 
+  const validPassword = await bcrypt.compare( req.body.password, user.password)
+  // const validPass = await user.validatePass(password); 
 
-  if(!validPass){
+  if(!validPassword){
     // return res.status(400).json({ error: true, message: 'Password no valida'})
     return res.status(400).json({ auth: false, error: true, message: 'datos no valido'})
   }
