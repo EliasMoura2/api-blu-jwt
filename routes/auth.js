@@ -130,7 +130,7 @@ router.post('/login', async (req, res, next) => {
 
 router.get('/me', verifyToken, async(req, res, next) => {
   /*
-      codigo pasado a la funcion verifyToken
+    codigo pasado a la funcion verifyToken
   */
   //console.log(decoded);
   //res.json('me')
